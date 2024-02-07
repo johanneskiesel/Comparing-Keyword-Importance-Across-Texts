@@ -7,6 +7,7 @@ import argparse
 import numpy as np
 import re
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description="CLI for parsing arguments")
 
@@ -37,7 +38,8 @@ def parse_args():
                       'Class B': "What do they write",
                       'Class C': "And another group"}
 
-    help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. You need this for the log_odd ratio."
+    help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. " \
+                  f"You need this for the log_odd ratio. "
     parser.add_argument(
         "--comparison_corpus",
         type=str,
@@ -76,7 +78,7 @@ def parse_args():
     parser.add_argument(
         "--method",
         type=str,
-        default='log_odds',
+        default='tfidf_pmi',
         help=f"Choose a method from the list of implemented methods {implemented_methods}"
     )
 
@@ -136,7 +138,7 @@ def calc_upper_and_lower_freq(X, more_freq_than, less_freq_than):
     upper = np.percentile(min_count, less_freq_than)
     min_count = (min_count >= lower)
     max_count = (min_count <= upper)
-    return (np.logical_and(min_count, max_count))
+    return np.logical_and(min_count, max_count)
 
 
 def calc_pmi_matrix(X, X_count):
@@ -189,17 +191,14 @@ def features_to_exclude(X, features, more_freq_than, less_freq_than, param):
 
 
 def fill_keyword_dict(X, labels, features, relevant_features, return_values, **kwargs):
-
     top_n_features_indices = np.argsort(-X[:, relevant_features], axis=1)
     keyword_dict = {}
 
     # Print the top N features for each document
     for doc_idx, top_indices in enumerate(top_n_features_indices):
         top_features = features[relevant_features][top_indices]
-        important_words = {}
-        important_words['words'] = list(top_features)
+        important_words = {'words': list(top_features)}
         if return_values:
-
             values = X[doc_idx, relevant_features]
             print(values.shape)
             values = values[top_indices]
@@ -226,7 +225,7 @@ def create_keyword_dictionary(corpus: list[str],
         X_tfidf = np.asarray(transform_to_tfidf(X).todense())
         return X_tfidf
 
-    def log_odds(X, **kwargs):
+    def log_odds(X, kwargs):
         assert 'comparison_corpus' in kwargs, "Include a comparison corpus to account for noise in the log_odds_ratio."
         assert 'vectorizer' in kwargs, "Include a vectorizer to transform the comparison with given vocabulary."
 
@@ -258,18 +257,18 @@ def create_keyword_dictionary(corpus: list[str],
         min_df = len(labels)
 
     X, vectorizer, features = get_count_vectorizer_and_matrix(corpus=corpus,
-                                        min_df=min_df,
-                                        stop_words=language)
+                                                              min_df=min_df,
+                                                              stop_words=language)
     print(X.shape)
     print(vectorizer)
 
     kwargs['vectorizer'] = vectorizer
 
     relevant_features = features_to_exclude(X,
-                                           features,
-                                           more_freq_than=more_freq_than,
-                                           less_freq_than=less_freq_than,
-                                           param=kwargs)
+                                            features,
+                                            more_freq_than=more_freq_than,
+                                            less_freq_than=less_freq_than,
+                                            param=kwargs)
     X = locals()[method](X=X,
                          **kwargs)
 
@@ -294,6 +293,7 @@ def generate_timestamp():
     filename = f"{timestamp_str}"
     return filename
 
+
 def main():
     args = parse_args()
 
@@ -308,9 +308,18 @@ def main():
     less_freq_than = args.pop('less_freq_than')
     method = args.pop('method')
     return_values = args.pop('return_values')
+
     assert method in implemented_methods, f"Please make sure that the method={method} is part of the implemented_methods={implemented_methods}."
+
+    if isinstance(corpus, str):
+        with open(corpus) as f:
+            corpus = json.load(f)
+    if isinstance(args["comparison_corpus"], str):
+        with open(corpus) as f:
+            args["comparison_cropus"] = json.load(f)
+
     # Do something with the parsed arguments
-    print("Corpus path:", corpus)
+    print("Corpus path:", output_dict['corpus'])
     print("Language:", language)
     print("Minimum document frequency:", min_df)
     print("More frequent than:", more_freq_than)
@@ -318,14 +327,14 @@ def main():
     print("Method", method)
 
     keyword_dict = create_keyword_dictionary(corpus=list(corpus.values()),
-                                                   labels=list(corpus.keys()),
-                                                   min_df=min_df,
-                                                   more_freq_than=more_freq_than,
-                                                   less_freq_than=less_freq_than,
-                                                   language=language,
-                                                   method=method,
-                                                   return_values=return_values,
-                                                   **args)
+                                             labels=list(corpus.keys()),
+                                             min_df=min_df,
+                                             more_freq_than=more_freq_than,
+                                             less_freq_than=less_freq_than,
+                                             language=language,
+                                             method=method,
+                                             return_values=return_values,
+                                             **args)
 
     filename = generate_timestamp()
 
@@ -337,6 +346,6 @@ def main():
     with open(f"{output_directory}{filename}_{method}.json", "w") as f:
         json.dump(output_dict, f)
 
+
 if __name__ == "__main__":
     main()
-
