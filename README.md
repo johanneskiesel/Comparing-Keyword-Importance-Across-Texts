@@ -7,7 +7,7 @@ The resulting information is useful in text based analysis.
 Apologies for the oversight. Here's the corrected table:
 
 | Dimension| TF-IDF | Log Odds Ratio| PMI |
-|:---|:---:|:---:|---:|
+|:---|:---:|:---:|:---:|
 | Definition       | Measures the importance of a term in a document relative to a corpus.                                           | Logarithm of the ratio of the probability of a term occurring in a class versus its probability in the entire corpus. | Measures the association between two terms, indicating their dependency. |
 | Formula          | \( TF \times \log \left( \frac{N}{df} \right) \)                                                             | \( \log \left( \frac{P(w \,|\, c)}{P(w \,|\, \neg c)} \right) \)                                 | \( \log \left( \frac{P(w_1, w_2)}{P(w_1) \cdot P(w_2)} \right) \)     |
 | Strengths       | - Simple and easy to compute.                                                                                  | - Effective for binary classification tasks.                                                      | - Captures associations between terms, even if they are rare.       |
