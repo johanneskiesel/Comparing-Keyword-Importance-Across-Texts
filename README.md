@@ -8,11 +8,10 @@ Apologies for the oversight. Here's the corrected table:
 
 | Dimension| TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
-| Definition       | Measures the importance of a term in a document relative to a corpus.                                           | Logarithm of the ratio of the probability of a term occurring in a class versus its probability in the entire corpus. | Measures the association between two terms, indicating their dependency. |
-| Formula          | \( TF \times \log \left( \frac{N}{df} \right) \)                                                             | \( \log \left( \frac{P(w \,|\, c)}{P(w \,|\, \neg c)} \right) \)                                 | \( \log \left( \frac{P(w_1, w_2)}{P(w_1) \cdot P(w_2)} \right) \)     |
-| Strengths       | - Simple and easy to compute.                                                                                  | - Effective for binary classification tasks.                                                      | - Captures associations between terms, even if they are rare.       |
-| Weaknesses      | - Ignores the context of terms within documents.                                                               | - Prone to biases when class proportions are unbalanced.                                           | - Sensitive to rare events, leading to overestimation of significance. |
-| Interpretability | High: Higher score indicates greater importance of the term within the document.                                 | High: Positive values indicate association with the class, negative values with other classes.       | High: Indicates strength of association between terms.               |
+| Definition | Measures the importance of a term in a document relative to a corpus.                                           | Logarithm of the ratio of the probability of a term occurring in a class versus its probability in the entire corpus. | Measures the association between two terms, indicating their dependency. |
+| When to use?       | Finding terms that are characteristic for a group. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group. |
+| Weaknesses      | - Ignores the context of terms within documents. | - Prone to biases when class proportions are unbalanced. | - Sensitive to rare events, leading to overestimation of significance. |
+| Interpretability | High Scores: indicate greater importance of the term within the group. | Positive: indicate association with the group. Negative: indicates low importance of term for the group. | High Scores: Indicate strength of association between term and group. Low Scores: indicate disassocation between term and group |
 
 ## Social Science usecase(s)
 Topic Modeling and Content Analysis:
