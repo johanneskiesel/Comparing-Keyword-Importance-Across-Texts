@@ -9,7 +9,7 @@ Apologies for the oversight. Here's the corrected table:
 | | TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
 | Definition | Measures the importance of a term in a group not only by frequent usage but also through usage in other groups. | Quantifies the increase of the relative importance of a term for a group in comparison to all other groups. | Measures the association between a term and a group, indicating their dependency. |
-| When to use?       | Finding terms that are characteristic for a group and are not used by other groups. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group and are seldomly used by other groups. |
+| When to use?       | Finding terms that are characteristic for a group and are only used by a subset of groups. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group and are seldomly used by other groups. |
 | Interpretability | High Scores: indicate greater importance of the term within the group. | Positive: indicate association with the group. Negative: indicates low importance of term for the group. | High Scores: Indicate strength of association between term and group. Low Scores: indicate disassocation between term and group |
 
 ## Social Science usecase(s)
