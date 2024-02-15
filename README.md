@@ -10,7 +10,6 @@ Apologies for the oversight. Here's the corrected table:
 |:---|:---:|:---:|:---:|
 | Definition | Measures the importance of a term in a document relative to a corpus.                                           | Logarithm of the ratio of the probability of a term occurring in a class versus its probability in the entire corpus. | Measures the association between two terms, indicating their dependency. |
 | When to use?       | Finding terms that are characteristic for a group. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group. |
-| Weaknesses      | - Ignores the context of terms within documents. | - Prone to biases when class proportions are unbalanced. | - Sensitive to rare events, leading to overestimation of significance. |
 | Interpretability | High Scores: indicate greater importance of the term within the group. | Positive: indicate association with the group. Negative: indicates low importance of term for the group. | High Scores: Indicate strength of association between term and group. Low Scores: indicate disassocation between term and group |
 
 ## Social Science usecase(s)
