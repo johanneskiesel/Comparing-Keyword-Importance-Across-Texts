@@ -7,21 +7,21 @@ The resulting information is useful in text based analysis.
 ## Social Science usecase(s)
 Topic Modeling and Content Analysis:
 
-    Use Case: You want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
-    
-    Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
+Use Case: You want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
+
+Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
 
 Sentiment Analysis in Social Media Data:
 
-    Use Case: You want to study public opinion on climate change using tweets from Twitter?
-    
-    Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, you can identify the most relevant terms associated with discussions on climate change. This analysis can reveal sentiment polarity, key influencers, and common narratives surrounding the topic.
+Use Case: You want to study public opinion on climate change using tweets from Twitter?
+
+Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, you can identify the most relevant terms associated with discussions on climate change. This analysis can reveal sentiment polarity, key influencers, and common narratives surrounding the topic.
 
 Comparative Analysis of Cultural Texts:
 
-    Use Case: You want to conduct a comparative study of cultural differences in literature between two countries?
-    
-    Method Application: By utilizing TF-IDF, PMI, and Log Odds Ratio, you can compare the frequency and co-occurrence of culturally significant terms in literature from each country. This analysis can provide insights into cultural values, societal norms, and prevalent themes within the literature of each country.
+Use Case: You want to conduct a comparative study of cultural differences in literature between two countries?
+
+Method Application: By utilizing TF-IDF, PMI, and Log Odds Ratio, you can compare the frequency and co-occurrence of culturally significant terms in literature from each country. This analysis can provide insights into cultural values, societal norms, and prevalent themes within the literature of each country.
 
 ## Structure
 The method consists of one file keyword_extraction.py.
