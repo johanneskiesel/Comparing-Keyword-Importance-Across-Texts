@@ -6,7 +6,7 @@ The resulting information is useful in text based analysis.
 
 Apologies for the oversight. Here's the corrected table:
 
-| Dimension| TF-IDF | Log Odds Ratio| PMI |
+| | TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
 | Definition | Measures the importance of a term in a group not only by frequent usage but also through usage in other groups. | Quantifies the increase of the relative importance of a term for a group in comparison to all other groups. | Measures the association between a term and a group, indicating their dependency. |
 | When to use?       | Finding terms that are characteristic for a group. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group. |
