@@ -72,7 +72,8 @@ pip install -r requirements.txt
 
 # Usage
 ## Input Data (DBD datasets)
-- Link(s) to the DBD dataset(s) that this method can work with
+- [German Federal Elections](https://search.gesis.org/research_data/ZA7721?doi=10.4232/1.13789)
+- [TweetsCov19](https://data.gesis.org/tweetscov19/#dataset)
 
 ## Sample Input Data
 The corpus data should look something like this:
