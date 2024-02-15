@@ -1,93 +1,146 @@
-# Keyword_Extraction
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.gesis.org/bda/keyword_extraction.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://git.gesis.org/bda/keyword_extraction/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+# Comparative Keyword Importance
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores per word and group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
+The resulting information is useful in text based analysis.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Social Science usecase(s)
+Topic Modeling and Content Analysis:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+    Use Case: You want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
+    
+    Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Sentiment Analysis in Social Media Data:
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+    Use Case: You want to study public opinion on climate change using tweets from Twitter?
+    
+    Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, you can identify the most relevant terms associated with discussions on climate change. This analysis can reveal sentiment polarity, key influencers, and common narratives surrounding the topic.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Comparative Analysis of Cultural Texts:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+    Use Case: You want to conduct a comparative study of cultural differences in literature between two countries?
+    
+    Method Application: By utilizing TF-IDF, PMI, and Log Odds Ratio, you can compare the frequency and co-occurrence of culturally significant terms in literature from each country. This analysis can provide insights into cultural values, societal norms, and prevalent themes within the literature of each country.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## Structure
+The method consists of one file keyword_extraction.py.
+Once the method is finished the method will create the following folder structure and output.
+In the /ouptut/ folder you find the csv with the word importance scores.
+In /output_config/ you find a json specify all the parameters used to produce the csv.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```
+.
+├── keyword_extraction.py
+├── output
+│   └── the-time-you-ran-the-code_pmi.csv
+├── output_config
+│   └── the-time-you-ran-the-code_pmi.json
+├── output.csv
+├── README.md
+└── requirements.txt
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+```
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Keywords
+Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
-## License
-For open source projects, say how it is licensed.
+# Setup
+## Environment Setup
+Download the repository with or directly copy the raw code from keyword_extraction.py, and requirements.txt
+```
+git clone https://git.gesis.org/bda/keyword_extraction.git
+```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Then navigate in your project folder and run 
+```
+pip install -r requirements.txt
+```
+
+## Installing Dependencies
+- Installing all the packages and libraries with specific versions required to run this method
+- The user should be able to reuse the method following the information provided
+
+
+# Usage
+## Input Data (DBD datasets)
+- Link(s) to the DBD dataset(s) that this method can work with
+
+## Sample Input Data
+The corpus data should look something like this:
+
+```
+{
+    'Class A': "This is the liberal solution: All text is good aswell as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
+    'Class B': "This is the center solution: They are bad not good, if everyone remains on his own position we are all alone which is bad . We are the center ones . Not the progressive nor the liberal ones .",
+    'Class C': "This is the progressive solution: Another groups position is the problem. They dont move from their position . We are the progressive ones . Not the liberal nor the center ones . "
+}
+```
+
+## Sample Output
+This file can be run from the Terminal with:
+
+
+```
+python keyword_extraction.py -help
+```
+
+This call will return the list of parameters you can specify.
+Once you are familiar with the possible parameters you can run the code like this:
+
+```
+python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json
+```
+
+The method will produce a csv in the following form:
+
+|Words | Class A | Class B | Class C|
+|:---  | :---:   | :---:   | ---:|
+|example | pmi_a | pmi_b | pmi_c |
+
+
+Moreover, in the /config_output/ you find a json file that saved all the used parameters for the resulting table.
+
+```
+{
+    "corpus": "/home/linzbasn/viewpoint-aware-language-model/Training_Variables/new_corpus.json",
+    "comparison_corpus": "",
+    "language": "english",
+    "min_df": null,
+    "more_freq_than": 0,
+    "less_freq_than": 100,
+    "method": "pmi",
+    "only_words": true,
+    "return_values": true
+}
+
+```
+
+## How to Use
+
+```
+python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json -more_freq_than 80
+```
+With this call you calculate the Pointwise Mutual Information for words that appear more frequent than 80% of all the words found in the documents. So, just words that appear very often.
+
+
+```
+python keyword_extraction.py -method tfidf -corpus /path/to/your_corpus.json -min_df 2
+```
+Calling the method like this you will create the importance scores on the basis of TFIDF (Term frequency Inverse Document Frequency). This method weighs words higher when they dont appear in all documents. Meaning a word that only appears in this document is probably more important for this document than a word that is shared across all documents. With 'min_df' we specify that the words should atleast appear in 2 documents. Thus, we exclude all words that only appear in one document.
+
+```
+python keyword_extraction.py -method pmi_tfidf -corpus /path/to/your_corpus.json -less_freq_than 20
+```
+If you run this code you calculate the Pointwise Mutual Information for the tfidf scores of the words. This has sometimes benefits as it already takes into account how important a word is for the specific group when weighting it. Furthermore, we exclude the 20% of words that appear less often.
+
+```
+python keyword_extraction.py -method log_odds -corpus /path/to/your_corpus.json -comparison_corpus /path/to/your_comparison_corpus.json 
+```
+To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased and helps us to understand how often certain words appear under normal circumstances. With this information we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
+
+
+# Specifics
+## Contact Details
+Stephan.Linzbach@gesis.org
+
