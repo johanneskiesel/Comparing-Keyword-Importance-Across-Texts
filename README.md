@@ -1,4 +1,4 @@
-# Comparative Keyword Importance <img src="image.png" align="right" height="200" />
+# Comparative Keyword Importance
 
 ## Description
 Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores per word and group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
