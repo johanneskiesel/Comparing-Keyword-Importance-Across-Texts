@@ -4,7 +4,6 @@
 Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores per word and group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
 The resulting information is useful in text based analysis.
 
-Apologies for the oversight. Here's the corrected table:
 
 | | TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
