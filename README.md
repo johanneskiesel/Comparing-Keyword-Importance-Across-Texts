@@ -25,10 +25,13 @@ Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can iden
 ```
 
 Sentiment Analysis in Social Media Data:
+```
+Use Case: You want to study public opinion on climate change using tweets from Twitter?
 
-    Use Case: You want to study public opinion on climate change using tweets from Twitter?
-
-    Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, you can identify the most relevant terms associated with discussions on climate change. This analysis can reveal sentiment polarity, key influencers, and common narratives surrounding the topic.
+Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, 
+you can identify the most relevant terms associated with discussions on climate change. 
+This analysis can reveal sentiment polarity, key influencers, 
+and common narratives surrounding the topic.
 
 Comparative Analysis of Cultural Texts:
 
