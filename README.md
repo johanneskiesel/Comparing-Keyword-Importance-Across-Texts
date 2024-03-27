@@ -28,7 +28,7 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 >> By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
 
 
-### Sentiment Analysis in Social Media Data:
+### Opinion Mining in Social Media Data:
 
 > **Use Case:**
 >> Imagine you want to study public opinion on climate change using tweets from Twitter?
