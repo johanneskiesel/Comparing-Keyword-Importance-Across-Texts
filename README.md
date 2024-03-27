@@ -32,6 +32,7 @@ Method Application: By applying TF-IDF, PMI, and Log Odds Ratio on the tweet cor
 you can identify the most relevant terms associated with discussions on climate change. 
 This analysis can reveal sentiment polarity, key influencers, 
 and common narratives surrounding the topic.
+```
 
 Comparative Analysis of Cultural Texts:
 
