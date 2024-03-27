@@ -90,7 +90,7 @@ pip install -r requirements.txt
 - [Incels Forum Data](https://search.gesis.org/research_data/SDN-10.7802-2485?doi=10.7802/2485)
 
 ## Sample Input Data
-The corpus data should look something like this:
+The corpus data should look something like this: 
 
 ```
 {
