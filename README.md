@@ -28,7 +28,7 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
 ### Sentiment Analysis in Social Media Data:
 
-> Use Case: 
+> **Use Case:**
 >> Imagine you want to study public opinion on climate change using tweets from Twitter?
 
 > Method Application: 
