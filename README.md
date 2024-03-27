@@ -1,7 +1,9 @@
 # Comparative Keyword Importance
 
 ## Description
-Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores of a word for a group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
+Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere).
+These texts can be news articles, forum entries, websites, or a manifesto.
+The method can calculate the group-specific importance of a word in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
 Based on these scores you can for example keep the 50 most important terms for a specific a group of people.
 The resulting information is useful when you want to analyze the language of political and social groups in comparison with each other.
 
@@ -107,6 +109,7 @@ python keyword_extraction.py -help
 ```
 
 This call will return the list of parameters you can specify.
+There you can find an explanation for all and their respective functionality.
 Once you are familiar with the possible parameters you can run the code like this:
 
 ```
@@ -124,7 +127,7 @@ Moreover, in the /config_output/ you find a json file that saved all the used pa
 
 ```
 {
-    "corpus": "/home/linzbasn/viewpoint-aware-language-model/Training_Variables/new_corpus.json",
+    "corpus": "/path/to/new_corpus.json",
     "comparison_corpus": "",
     "language": "english",
     "min_df": null,
@@ -148,7 +151,7 @@ With this call you calculate the Pointwise Mutual Information for words that app
 ```
 python keyword_extraction.py -method tfidf -corpus /path/to/your_corpus.json -min_df 2
 ```
-Calling the method like this you will create the importance scores on the basis of TFIDF (Term frequency Inverse Document Frequency). This method weighs words higher when they dont appear in all documents. Meaning a word that only appears in this document is probably more important for this document than a word that is shared across all documents. With 'min_df' we specify that the words should atleast appear in 2 documents. Thus, we exclude all words that only appear in one document.
+Calling the method like this you will create the importance scores on the basis of TFIDF (Term frequency Inverse Document Frequency). This method weighs words higher when they dont appear in all documents. Meaning a word that only appears in this document is probably more important for this document than a word that is shared across all documents. With 'min_df' we specify that the words should at least appear in 2 documents. Thus, we exclude all words that only appear in one document.
 
 ```
 python keyword_extraction.py -method pmi_tfidf -corpus /path/to/your_corpus.json -less_freq_than 20
