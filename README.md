@@ -18,9 +18,11 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 ## Typical use cases in the social sciences
 Topic Modeling and Content Analysis:
 
-> Use Case: Imagine you want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
+> Use Case: 
+>>Imagine you want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
 
-> Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
+> Method Application: 
+>> By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
 
 
 Sentiment Analysis in Social Media Data:
