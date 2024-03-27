@@ -1,8 +1,9 @@
 # Comparative Keyword Importance
 
 ## Description
-Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores per word and group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
-The resulting information is useful in text based analysis.
+Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere), the method can perform the calculation of importance scores of a word for a group in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
+Based on these scores you can for example keep the 50 most important terms for a specific a group of people.
+The resulting information is useful when you want to analyze the language of political and social groups in comparison with each other.
 
 
 | | TF-IDF | Log Odds Ratio| PMI |
@@ -11,12 +12,17 @@ The resulting information is useful in text based analysis.
 | When to use?       | Finding terms that are characteristic for a group and are only used by a subset of other groups. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group and are seldomly used by other groups. |
 | Interpretability | High Scores: indicate greater importance of the term within the group. | Positive: indicate association with the group. Negative: indicates low importance of term for the group. | High Scores: Indicate strength of association between term and group. Low Scores: indicate disassocation between term and group |
 
-## Social Science usecase(s)
+## Keywords
+Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
+
+## Typical use cases in the social sciences
 Topic Modeling and Content Analysis:
 
-    Use Case: You want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
+```
+Use Case: You want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
 
-    Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
+Method Application: By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
+```
 
 Sentiment Analysis in Social Media Data:
 
@@ -30,7 +36,7 @@ Comparative Analysis of Cultural Texts:
 
     Method Application: By utilizing TF-IDF, PMI, and Log Odds Ratio, you can compare the frequency and co-occurrence of culturally significant terms in literature from each country. This analysis can provide insights into cultural values, societal norms, and prevalent themes within the literature of each country.
 
-## Structure
+## Directory Structure
 The method consists of one file keyword_extraction.py.
 Once the method is finished the method will create the following folder structure and output.
 In the /ouptut/ folder you find the csv with the word importance scores.
@@ -49,8 +55,6 @@ In /output_config/ you find a json specify all the parameters used to produce th
 
 ```
 
-## Keywords
-Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
 # Setup
 ## Environment Setup
@@ -70,11 +74,12 @@ pip install -r requirements.txt
 
 
 # Usage
-## Input Data (DBD datasets)
+## Input Data (Digital Behavior Data datasets)
 - [German Federal Elections](https://search.gesis.org/research_data/ZA7721?doi=10.4232/1.13789)
 - [TweetsCov19](https://data.gesis.org/tweetscov19/#dataset)
 - [Call me sexist but](https://data.gesis.org/sharing/#!Detail/10.7802/2251)
 - [Incels Forum Data](https://search.gesis.org/research_data/SDN-10.7802-2485?doi=10.7802/2485)
+
 ## Sample Input Data
 The corpus data should look something like this:
 
