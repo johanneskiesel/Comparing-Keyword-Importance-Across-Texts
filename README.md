@@ -127,7 +127,7 @@ Moreover, in the /config_output/ you find a json file that saved all the used pa
 
 ```
 {
-    "corpus": "/path/to/new_corpus.json",
+    "corpus": "/path/to/your_corpus.json",
     "comparison_corpus": "",
     "language": "english",
     "min_df": null,
