@@ -4,8 +4,8 @@
 Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere).
 These texts can be news articles, forum entries, websites, or a manifesto.
 The method can calculate the group-specific importance of a word in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
-Based on these scores you can for example keep the 50 most important terms for a specific a group of people.
-The resulting information is useful when you want to analyze the language of political and social groups in comparison with each other.
+Based on these scores you can for example keep the 50 most important terms for a specific group of people.
+The resulting information is useful if you want to analyze the language of political and social groups in comparison to each other.
 
 
 | | TF-IDF | Log Odds Ratio| PMI |
