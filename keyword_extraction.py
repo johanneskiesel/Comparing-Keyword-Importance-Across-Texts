@@ -35,16 +35,16 @@ def parse_args():
         help=help_corpus,
     )
 
-    corpus_default = {'Class A': "All the text",
-                      'Class B': "What do they write",
-                      'Class C': "And another group"}
+    comp_corpus_default = {'Document D': "All the text",
+                           'Document E': "What do they write",
+                           'Document F': "And another group"}
 
     help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. " \
                   f"You need this for the log_odd ratio. "
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default=corpus_default,
+        default=comp_corpus_default,
         help=help_corpus,
     )
 
