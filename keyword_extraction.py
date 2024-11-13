@@ -1,10 +1,11 @@
+from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer, CountVectorizer
 from datetime import datetime
-import os
-import json
-from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer
-import argparse
+from copy import deepcopy
 import numpy as np
+import argparse
+import pickle
+import json
+import os
 import re
 
 
@@ -13,15 +14,15 @@ def parse_args():
 
     implemented_methods = ['log_odds', 'tfidf', 'pmi', 'tfidf_pmi']
 
-    corpus_default = {'Class A': "This is it the liberal solution: "
+    corpus_default = {'Document A': "This is it the liberal solution: "
                                  "All the text is good aswell as bad. The good one has to take its own position ."
                                  "We are the liberal ones ."
                                  "Not the center nor the progressive ones.",
-                      'Class B': "This is it the center solution: They are bad not good if everyone is on "
+                      'Document B': "This is it the center solution: They are bad not good if everyone is on "
                                  "its own position we are all alone which is bad ."
                                  "We are the center ones ."
                                  "Not the progressive nor the liberal ones .",
-                      'Class C': "This is it the progressive solution: "
+                      'Document C': "This is it the progressive solution: "
                                  "Another groups position is the problem they dont move from their position ."
                                  "We are the progressive ones ."
                                  "Not the liberal nor the center ones . "}
@@ -72,7 +73,7 @@ def parse_args():
         "--less_freq_than",
         type=int,
         default=100,
-        help="Frequency threshold for less frequent words (default: 100)",
+        help="Frequency threshold for less frequent words (default: 1.0)",
     )
 
     parser.add_argument(
@@ -80,6 +81,13 @@ def parse_args():
         type=str,
         default='tfidf_pmi',
         help=f"Choose a method from the list of implemented methods {implemented_methods}"
+    )
+
+    parser.add_argument(
+        "--stop_words",
+        type=str,
+        default='english',
+        help=f"Exclude stop_words from this list ['english']."
     )
 
     parser.add_argument(
@@ -134,10 +142,10 @@ def remove_non_words(features):
 def calc_upper_and_lower_freq(X, more_freq_than, less_freq_than):
     min_count = np.array(np.min(X, axis=0)).reshape(-1, )
     lower = np.percentile(min_count, more_freq_than)
-    # min_count = np.array(np.min(X.todense(), axis=0)).reshape(-1,)
-    upper = np.percentile(min_count, less_freq_than)
+    max_count = np.array(np.max(X, axis=0)).reshape(-1,)
+    upper = np.percentile(max_count, less_freq_than)
     min_count = (min_count >= lower)
-    max_count = (min_count <= upper)
+    max_count = (max_count <= upper)
     return np.logical_and(min_count, max_count)
 
 
@@ -203,15 +211,16 @@ def fill_keyword_dict(X, labels, features, relevant_features, return_values, **k
             print(values.shape)
             values = values[top_indices]
             important_words['values'] = list(values)
-        keyword_dict[labels[doc_idx]] = important_words.copy()
+        print(doc_idx, important_words['words'][:10], important_words['values'][:10])
+        keyword_dict[labels[doc_idx]] = deepcopy(important_words)
     return keyword_dict
 
 
-def create_keyword_dictionary(corpus: list[str],
-                              labels: list[str],
+def create_keyword_dictionary(corpus: list,
+                              labels: list,
                               min_df: int = None,
-                              more_freq_than: int = 95,
-                              less_freq_than: int = 99,
+                              more_freq_than: int = 0,
+                              less_freq_than: int = 100,
                               language: str = 'english',
                               method: str = 'log_odds',
                               return_values: bool = True,
@@ -225,11 +234,11 @@ def create_keyword_dictionary(corpus: list[str],
         X_tfidf = np.asarray(transform_to_tfidf(X).todense())
         return X_tfidf
 
-    def log_odds(X, kwargs):
+    def log_odds(X, **kwargs):
         assert 'comparison_corpus' in kwargs, "Include a comparison corpus to account for noise in the log_odds_ratio."
         assert 'vectorizer' in kwargs, "Include a vectorizer to transform the comparison with given vocabulary."
 
-        background = transform(kwargs['vectorizer'], kwargs['comparison_corpus'])
+        background = kwargs['vectorizer'].transform(kwargs['comparison_corpus'])
 
         alpha = np.sum(background, axis=0) + np.sum(X, axis=0)
 
@@ -298,6 +307,7 @@ def main():
     args = parse_args()
 
     implemented_methods = ['tfidf', 'log_odds', 'pmi', 'tfidf_pmi']
+    filename = generate_timestamp()
 
     args = vars(args)
     output_dict = args.copy()
@@ -314,9 +324,11 @@ def main():
     if isinstance(corpus, str):
         with open(corpus) as f:
             corpus = json.load(f)
+        del corpus['satire']
     if isinstance(args["comparison_corpus"], str):
-        with open(corpus) as f:
-            args["comparison_cropus"] = json.load(f)
+        with open(args["comparison_corpus"], "rb") as f:
+            args["comparison_corpus"] = pickle.load(f)
+            print(len(args["comparison_corpus"]))
 
     # Do something with the parsed arguments
     print("Corpus path:", output_dict['corpus'])
@@ -336,7 +348,6 @@ def main():
                                              return_values=return_values,
                                              **args)
 
-    filename = generate_timestamp()
 
     output_directory = "./output/"
 
