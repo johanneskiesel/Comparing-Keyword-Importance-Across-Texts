@@ -1,18 +1,18 @@
 # Comparative Keyword Importance
 
 ## Description
-Given a corpus containing text written by specific groups (right/left leaning; pro/contra climate change; feminist vs. manosphere).
-These texts can be news articles, forum entries, websites, or a manifesto.
-The method can calculate the group-specific importance of a word in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
-Based on these scores you can for example keep the 50 most important terms for a specific group of people.
-The resulting information is useful if you want to analyze the language of political and social groups in comparison to each other.
+Given a corpus containing different documents.
+These documents can be news articles, forum entries, websites, or a manifesto.
+The method can calculate the document-specific importance of a word in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
+For example, you can use the 50 most important terms for a specific document to describe its topic.
+The resulting information is useful if you want to analyze the language of political and social groups or summarize a document.
 
 
 | | TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
-| Definition | Measures the importance of a term in a group not only by frequent usage but also through the absence of use in other groups. | Quantifies the increase of the relative importance of a term for a group in comparison to all other groups. | Measures the association between a term and a group, indicating their dependency. |
-| When to use?       | Finding terms that are characteristic for a group and are only used by a subset of other groups. | Finding terms that have higher relevance for a certain group. | Finding terms that are characteristic for a group and are seldomly used by other groups. |
-| Interpretability | High Scores: indicate greater importance of the term within the group. | Positive: indicate association with the group. Negative: indicates low importance of term for the group. | High Scores: Indicate strength of association between term and group. Low Scores: indicate disassocation between term and group |
+| Definition | Measures the importance of a term in a document not only by frequent usage but also through the absence of use in other documents. | Quantifies the increase of the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
+| When to use?       | Finding terms that are characteristic for a document and are only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic for a document and are seldom used by other documents. |
+| Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between term and the document. |
 
 ## Keywords
 Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
@@ -94,9 +94,9 @@ The corpus data should look something like this:
 
 ```
 {
-    'Class A': "This is the liberal solution: All text is good aswell as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
-    'Class B': "This is the center solution: They are bad not good, if everyone remains on his own position we are all alone which is bad . We are the center ones . Not the progressive nor the liberal ones .",
-    'Class C': "This is the progressive solution: Another groups position is the problem. They dont move from their position . We are the progressive ones . Not the liberal nor the center ones . "
+    'Document A': "This is the liberal solution: All text is good aswell as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
+    'Document B': "This is the center solution: They are bad not good, if everyone remains on his own position we are all alone which is bad . We are the center ones . Not the progressive nor the liberal ones .",
+    'Document C': "This is the progressive solution: Another groups position is the problem. They dont move from their position . We are the progressive ones . Not the liberal nor the center ones . "
 }
 ```
 
@@ -118,7 +118,7 @@ python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json
 
 The method will produce a csv in the following form:
 
-|Words | Class A | Class B | Class C|
+|Words | Document A | Document B | Document C|
 |:---  | :---:   | :---:   | ---:|
 |example | pmi_a | pmi_b | pmi_c |
 
@@ -156,12 +156,12 @@ Calling the method like this you will create the importance scores on the basis 
 ```
 python keyword_extraction.py -method pmi_tfidf -corpus /path/to/your_corpus.json -less_freq_than 20
 ```
-If you run this code you calculate the Pointwise Mutual Information for the tfidf scores of the words. This has sometimes benefits as it already takes into account how important a word is for the specific group when weighting it. Furthermore, we exclude the 20% of words that appear less often.
+If you run this code you calculate the Pointwise Mutual Information for the tfidf scores of the words. This can be beneficial as it already accounts for the importance of a word for a specific document when weighting it. Furthermore, we exclude the 20% of words that appear less often.
 
 ```
 python keyword_extraction.py -method log_odds -corpus /path/to/your_corpus.json -comparison_corpus /path/to/your_comparison_corpus.json 
 ```
-To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased and helps us to understand how often certain words appear under normal circumstances. With this information we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
+To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased as it is used to quantify how often certain words appear under normal circumstances. With this information, we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
 
 
 # Specifics
