@@ -24,12 +24,14 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 Imagine you are a social scientist studying public discourse on climate change over time. You want to identify emerging trends and changes in how people discuss the topic on Twitter.
 #### Method Application
 
-Using this method, you analyze tweets from different periods (e.g., monthly or yearly datasets). For each period:
+Using this method, you analyze tweets from different periods (e.g., monthly or yearly datasets). For each period you perform: 
+
     1. **Keyword Extraction**: Apply metrics like TF-IDF or Log Odds Ratio to identify terms uniquely important in that period's tweets.
     2. **Trend Detection**: Compare the importance scores of keywords across periods to see which terms are gaining or losing prominence.
 
 #### Outcome
 The analysis reveals:
+
     -**Emerging Keywords**: For example, new terms like carbon neutrality or greenwashing might appear in recent datasets, indicating shifts in public focus.
     -**Diminishing Keywords**: Older terms like global warming might show reduced importance, reflecting changes in terminology or framing.
     -**Stable Keywords**: Terms like climate crisis might maintain steady importance, showing consistency in discourse.
