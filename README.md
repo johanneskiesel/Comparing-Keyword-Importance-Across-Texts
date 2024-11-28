@@ -19,31 +19,23 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
 ## Typical use cases in the social sciences
 
-### Topic Modeling and Content Analysis:
+### Use Case: Identifying Trends in Social Media Discussions
+#### Scenario
+Imagine you are a social scientist studying public discourse on climate change over time. You want to identify emerging trends and changes in how people discuss the topic on Twitter.
+#### Method Application
 
-> **Use Case:** 
->>Imagine you want to analyze a corpus of political speeches from various politicians to identify recurring themes and topics?
+Using this method, you analyze tweets from different periods (e.g., monthly or yearly datasets). For each period:
+    1. **Keyword Extraction**: Apply metrics like TF-IDF or Log Odds Ratio to identify terms uniquely important in that period's tweets.
+    2. **Trend Detection**: Compare the importance scores of keywords across periods to see which terms are gaining or losing prominence.
 
-> **Method Application:** 
->> By calculating TF-IDF, PMI, and Log Odds Ratio, you can identify significant terms and their associations within the speeches. This can help in uncovering key topics, sentiments, and political ideologies prevalent in the speeches.
+#### Outcome
+The analysis reveals:
+    -**Emerging Keywords**: For example, new terms like carbon neutrality or greenwashing might appear in recent datasets, indicating shifts in public focus.
+    -**Diminishing Keywords**: Older terms like global warming might show reduced importance, reflecting changes in terminology or framing.
+    -**Stable Keywords**: Terms like climate crisis might maintain steady importance, showing consistency in discourse.
 
-
-### Opinion Mining in Social Media Data:
-
-> **Use Case:**
->> Imagine you want to study public opinion on climate change using tweets from Twitter?
-
-> **Method Application:** 
->> By applying TF-IDF, PMI, and Log Odds Ratio on the tweet corpus, you can identify the most relevant terms associated with discussions on climate change. This analysis can reveal sentiment polarity, key influencers, and common narratives surrounding the topic.
-
-### Comparative Analysis of Cultural Texts:
-
-> **Use Case:** 
->> Imagine you want to conduct a comparative study of cultural differences in literature between two countries?
-
-> **Method Application:** 
->> By utilizing TF-IDF, PMI, and Log Odds Ratio, you can compare the frequency and co-occurrence of culturally significant terms in literature from each country. This analysis can provide insights into cultural values, societal norms, and prevalent themes within the literature of each country.
-
+#### Why is it Useful?
+This trend analysis helps identify how public conversations evolve, providing insights into societal priorities, policy impacts, or advocacy success. It can also guide future research or communication strategies on climate issues.
 
 ## Directory Structure
 The method consists of one file keyword_extraction.py.
