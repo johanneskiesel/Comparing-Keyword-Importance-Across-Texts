@@ -1,4 +1,4 @@
-# Comparative Keyword Importance
+# Comparing Keyword Importance Across Texts
 
 ## Description
 Given a corpus containing different documents.
