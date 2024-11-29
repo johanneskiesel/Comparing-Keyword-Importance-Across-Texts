@@ -1,11 +1,9 @@
 # Comparing Keyword Importance Across Texts
 
 ## Description
-Given a corpus containing different documents.
-These documents can be news articles, forum entries, websites, or a manifesto.
-The method can calculate the document-specific importance of a word in four different ways (tfidf, pmi, pmi+tfidf and log odds ratio).
-For example, you can use the 50 most important terms for a specific document to describe its topic.
-The resulting information is useful if you want to analyze the language of political and social groups or summarize a document.
+This method identifies and ranks the most important words in a collection of documents, such as articles, speeches, or social media posts, by analyzing their frequency and uniqueness within each document. 
+Using measures like TF-IDF, PMI, and Log Odds Ratio, it highlights terms that are especially relevant to a specific document while contrasting them with others in the collection. 
+This approach is ideal for uncovering key themes, comparing language use across texts, and tracking shifts in terminology or public discourse over time, making it a valuable tool for summarizing content or analyzing trends.
 
 
 | | TF-IDF | Log Odds Ratio| PMI |
