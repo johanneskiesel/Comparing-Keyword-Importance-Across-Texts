@@ -15,25 +15,9 @@ This approach is ideal for uncovering key themes, comparing language use across 
 ## Keywords
 Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
-## Typical use cases in the social sciences
-
-### Use Case: Identifying Trends in Social Media Discussions
-#### Scenario
-Imagine you are a social scientist studying public discourse on climate change over time. You want to identify emerging trends and changes in how people discuss the topic on Twitter.
-#### Method Application
-
-Using this method, you analyze tweets from different periods (e.g., monthly or yearly datasets). For each period you perform: \
-    1. **Keyword Extraction**: Apply metrics like TF-IDF or Log Odds Ratio to identify terms uniquely important in that period's tweets. \
-    2. **Trend Detection**: Compare the importance scores of keywords across periods to see which terms are gaining or losing prominence. 
-
-#### Outcome
-The analysis reveals: \
-    -**Emerging Keywords**: For example, new terms like carbon neutrality or greenwashing might appear in recent datasets, indicating shifts in public focus. \
-    -**Diminishing Keywords**: Older terms like global warming might show reduced importance, reflecting changes in terminology or framing. \
-    -**Stable Keywords**: Terms like climate crisis might maintain steady importance, showing consistency in discourse.
-
-#### Why is it Useful?
-This trend analysis helps identify how public conversations evolve, providing insights into societal priorities, policy impacts, or advocacy success. It can also guide future research or communication strategies on climate issues.
+## Use Cases
+Identifying Trends in Social Media Discussions
+A social scientist studying climate change discourse on Twitter can analyze tweets over time using this method. By extracting and comparing keywords, it reveals emerging terms (e.g., "carbon neutrality"), diminishing terms (e.g., "global warming"), and stable terms (e.g., "climate crisis"), offering insights into evolving public conversations and priorities.
 
 ## Directory Structure
 The method consists of one file keyword_extraction.py.
