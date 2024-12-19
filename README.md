@@ -15,9 +15,8 @@ This approach is ideal for uncovering key themes, comparing language use across 
 ## Keywords
 Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 
-## Use Cases
-Identifying Trends in Social Media Discussions
-A social scientist studying climate change discourse on Twitter can analyze tweets over time using this method. By extracting and comparing keywords, it reveals emerging terms (e.g., "carbon neutrality"), diminishing terms (e.g., "global warming"), and stable terms (e.g., "climate crisis"), offering insights into evolving public conversations and priorities.
+## Use Case
+A social scientist studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., "carbon neutrality"), diminishing terms (e.g., "global warming"), and stable terms (e.g., "climate crisis"), offering insights into evolving public conversations and priorities.
 
 ## Directory Structure
 The method consists of one file keyword_extraction.py.
