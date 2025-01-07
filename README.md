@@ -41,6 +41,7 @@ In /output_config/ you find a json specify all the parameters used to produce th
 # Setup
 ## Environment Setup
 Install Python v>=3.9 (preferably through Anaconda).
+
 Download the repository with or directly copy the raw code from [keyword_extraction.py](keyword_extraction.py), and requirements.txt
 ```
 git clone https://git.gesis.org/bda/keyword_extraction.git
