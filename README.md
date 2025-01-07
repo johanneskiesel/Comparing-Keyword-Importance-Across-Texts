@@ -19,7 +19,7 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 A social scientist studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., "carbon neutrality"), diminishing terms (e.g., "global warming"), and stable terms (e.g., "climate crisis"), offering insights into evolving public conversations and priorities.
 
 ## Directory Structure
-The method consists of one file keyword_extraction.py.
+The method consists of one file [keyword_extraction.py](keyword_extraction.py).
 Once the method is finished the method will create the following folder structure and output.
 In the /ouptut/ folder you find the csv with the word importance scores.
 In /output_config/ you find a json specify all the parameters used to produce the csv.
