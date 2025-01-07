@@ -14,18 +14,8 @@ def parse_args():
 
     implemented_methods = ['log_odds', 'tfidf', 'pmi', 'tfidf_pmi']
 
-    corpus_default = {'Document A': "This is it the liberal solution: "
-                                 "All the text is good aswell as bad. The good one has to take its own position ."
-                                 "We are the liberal ones ."
-                                 "Not the center nor the progressive ones.",
-                      'Document B': "This is it the center solution: They are bad not good if everyone is on "
-                                 "its own position we are all alone which is bad ."
-                                 "We are the center ones ."
-                                 "Not the progressive nor the liberal ones .",
-                      'Document C': "This is it the progressive solution: "
-                                 "Another groups position is the problem they dont move from their position ."
-                                 "We are the progressive ones ."
-                                 "Not the liberal nor the center ones . "}
+    with open("./data/default_corpus.json") as f:
+        corpus_default = json.load(f)
 
     help_corpus = f"A path to a json corpus in this format {corpus_default}."
     parser.add_argument(
@@ -35,16 +25,16 @@ def parse_args():
         help=help_corpus,
     )
 
-    comp_corpus_default = {'Document D': "All the text",
-                           'Document E': "What do they write",
-                           'Document F': "And another group"}
+    with open("./data/default_comparison_corpus.json") as f:
+        comparison_corpus_default = json.load(f)
 
     help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. " \
                   f"You need this for the log_odd ratio. "
+
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default=comp_corpus_default,
+        default=comparison_corpus_default,
         help=help_corpus,
     )
 
@@ -353,9 +343,16 @@ def main():
 
     os.makedirs(output_directory) if not os.path.exists(output_directory) else None
 
-    output_dict['keywords'] = keyword_dict
+    with open(f"{output_directory}{filename}_{method}.json", "w") as f:
+        json.dump(keyword_dict, f)
+
+    output_directory = "./output_config/"
+
+    os.makedirs(output_directory) if not os.path.exists(output_directory) else None
+
     with open(f"{output_directory}{filename}_{method}.json", "w") as f:
         json.dump(output_dict, f)
+
 
 
 if __name__ == "__main__":
