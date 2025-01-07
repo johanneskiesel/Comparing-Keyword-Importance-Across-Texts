@@ -59,10 +59,7 @@ pip install -r requirements.txt
 
 # Usage
 ## Input Data (Digital Behavior Data datasets)
-- [German Federal Elections](https://search.gesis.org/research_data/ZA7721?doi=10.4232/1.13789)
-- [TweetsCov19](https://data.gesis.org/tweetscov19/#dataset)
-- [Call me sexist but](https://data.gesis.org/sharing/#!Detail/10.7802/2251)
-- [Incels Forum Data](https://search.gesis.org/research_data/SDN-10.7802-2485?doi=10.7802/2485)
+The method handles digital behavior data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
 ## Sample Input Data
 The corpus data should look something like this: 
