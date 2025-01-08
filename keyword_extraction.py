@@ -14,21 +14,25 @@ def parse_args():
 
     implemented_methods = ['log_odds', 'tfidf', 'pmi', 'tfidf_pmi']
 
+    corpus_default = "./data/default_corpus.json"
+
     help_corpus = f"A path to a json corpus in this format {corpus_default}."
     parser.add_argument(
         "--corpus",
         type=str,
-        default="./data/default_corpus.json",
+        default=corpus_default,
         help=help_corpus,
     )
-    
+
+    comparison_corpus_default = "./data/default_comparison_corpus.json"
+
     help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. " \
                   f"You need this for the log_odd ratio. "
 
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default="./data/default_comparison_corpus.json",
+        default=comparison_corpus_default,
         help=help_corpus,
     )
 
@@ -222,7 +226,7 @@ def create_keyword_dictionary(corpus: list,
         assert 'comparison_corpus' in kwargs, "Include a comparison corpus to account for noise in the log_odds_ratio."
         assert 'vectorizer' in kwargs, "Include a vectorizer to transform the comparison with given vocabulary."
 
-        background = kwargs['vectorizer'].transform(kwargs['comparison_corpus'])
+        background = kwargs['vectorizer'].transform(kwargs['comparison_corpus_d'])
 
         alpha = np.sum(background, axis=0) + np.sum(X, axis=0)
 
@@ -308,11 +312,15 @@ def main():
     if isinstance(corpus, str):
         with open(corpus) as f:
             corpus = json.load(f)
-        del corpus['satire']
     if isinstance(args["comparison_corpus"], str):
-        with open(args["comparison_corpus"], "rb") as f:
-            args["comparison_corpus"] = pickle.load(f)
-            print(len(args["comparison_corpus"]))
+        try:
+            with open(args["comparison_corpus"], "rb") as f:
+                args["comparison_corpus_d"] = pickle.load(f)
+                print(len(args["comparison_corpus"]))
+        except:
+            with open(args["comparison_corpus"]) as f:
+                args["comparison_corpus_d"] = json.load(f)
+
 
     # Do something with the parsed arguments
     print("Corpus path:", output_dict['corpus'])
@@ -332,6 +340,10 @@ def main():
                                              return_values=return_values,
                                              **args)
 
+    try:
+        del args["comparison_corpus_d"]
+    except:
+        pass
 
     output_directory = "./output/"
 
