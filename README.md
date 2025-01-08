@@ -140,6 +140,11 @@ python keyword_extraction.py -method log_odds -corpus /path/to/your_corpus.json 
 ```
 To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased as it is used to quantify how often certain words appear under normal circumstances. With this information, we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
 
+Or use the config flag to load the configuration from the  `./config.json` file
+
+```
+python keyword_extraction.py -config True
+```
 
 # Specifics
 ## Contact Details
