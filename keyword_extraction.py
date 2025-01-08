@@ -7,6 +7,7 @@ import pickle
 import json
 import os
 import re
+import csv
 
 
 def parse_args():
@@ -290,6 +291,22 @@ def generate_timestamp():
     filename = f"{timestamp_str}"
     return filename
 
+def write_to_csv(output_file, data):
+    with open(output_file, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+
+        # Write the header row
+        writer.writerow(["Word"] + list(data.keys()))
+        all_words = set.union(*[set(w["words"]) for w in data.values()])
+
+        # Iterate over the data and write rows
+        for word in all_words:
+            values = []
+            for document, content in data.items():
+                word_dict = dict(zip(content["words"], content["values"]))
+                values.append(word_dict.get(word, None))
+            writer.writerow([word] + values)
+    return True
 
 def main():
     args = parse_args()
@@ -349,8 +366,9 @@ def main():
 
     os.makedirs(output_directory) if not os.path.exists(output_directory) else None
 
-    with open(f"{output_directory}{filename}_{method}.json", "w") as f:
-        json.dump(keyword_dict, f)
+    output_file = f"{output_directory}{filename}_{method}.csv"
+
+    write_to_csv(output_file, keyword_dict)
 
     output_directory = "./output_config/"
 
