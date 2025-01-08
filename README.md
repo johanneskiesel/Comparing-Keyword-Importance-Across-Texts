@@ -50,13 +50,15 @@ Download the repository with or directly copy the raw code from [keyword_extract
 git clone https://git.gesis.org/bda/keyword_extraction.git
 ```
 
-Then navigate in your project folder and run 
-```
-pip install -r requirements.txt
-```
+
 
 ## Installing Dependencies
 - Installing all the packages and libraries with specific versions required to run this method
+
+  ```
+  pip install -r requirements.txt
+  ```
+
 - The user should be able to reuse the method following the information provided
 
 
