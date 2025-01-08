@@ -14,27 +14,21 @@ def parse_args():
 
     implemented_methods = ['log_odds', 'tfidf', 'pmi', 'tfidf_pmi']
 
-    with open("./data/default_corpus.json") as f:
-        corpus_default = json.load(f)
-
     help_corpus = f"A path to a json corpus in this format {corpus_default}."
     parser.add_argument(
         "--corpus",
         type=str,
-        default=corpus_default,
+        default="./data/default_corpus.json",
         help=help_corpus,
     )
-
-    with open("./data/default_comparison_corpus.json") as f:
-        comparison_corpus_default = json.load(f)
-
+    
     help_corpus = f"A path to a json comparison_corpus in this format {corpus_default}. " \
                   f"You need this for the log_odd ratio. "
 
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default=comparison_corpus_default,
+        default="./data/default_comparison_corpus.json",
         help=help_corpus,
     )
 
