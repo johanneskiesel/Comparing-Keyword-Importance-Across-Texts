@@ -67,7 +67,7 @@ git clone https://git.gesis.org/bda/keyword_extraction.git
 The method handles digital behavior data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
 ## Sample Input Data
-The corpus data should look something like this: 
+The corpus data used in the script is stored in JSON format at data/default_corpus.json and looks something like this: 
 
 ```
 {
