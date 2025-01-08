@@ -37,6 +37,15 @@ def parse_args():
         help=help_corpus,
     )
 
+    help_corpus = f"If you have a config.json in the working directory it will be loaded when set to True. "
+
+    parser.add_argument(
+        "--config",
+        type=bool,
+        default=False,
+        help=help_corpus,
+    )
+
     parser.add_argument(
         "--language",
         type=str,
@@ -313,8 +322,18 @@ def main():
 
     implemented_methods = ['tfidf', 'log_odds', 'pmi', 'tfidf_pmi']
     filename = generate_timestamp()
-
+    
     args = vars(args)
+    if args.pop("config"):
+
+        # load config
+        with open("./config.json") as f:
+            config = json.load(f)
+
+        # update args
+        for k, v in config.items():
+            args[k] = v
+
     output_dict = args.copy()
     corpus = args.pop('corpus')
     language = args.pop('language')
