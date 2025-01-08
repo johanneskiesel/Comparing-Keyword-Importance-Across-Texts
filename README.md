@@ -28,6 +28,7 @@ In /output_config/ you find a json specify all the parameters used to produce th
 ```
 .
 ├── keyword_extraction.py
+├── config.json
 ├── output
 │   └── the-time-you-ran-the-code_pmi.csv
 ├── output_config
