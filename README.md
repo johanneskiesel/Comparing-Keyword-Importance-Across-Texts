@@ -126,30 +126,30 @@ Moreover, in the [/config_output/](config_output/) you find a json file that sav
 ## How to Use
 
 ```
-python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json -more_freq_than 80
+python keyword_extraction.py --config False --method pmi --corpus /path/to/your_corpus.json --more_freq_than 80
 ```
 With this call you calculate the Pointwise Mutual Information for words that appear more frequent than 80% of all the words found in the documents. So, just words that appear very often.
 
 
 ```
-python keyword_extraction.py -method tfidf -corpus /path/to/your_corpus.json -min_df 2
+python keyword_extraction.py --config False --method tfidf --corpus /path/to/your_corpus.json --min_df 2
 ```
 Calling the method like this you will create the importance scores on the basis of TFIDF (Term frequency Inverse Document Frequency). This method weighs words higher when they dont appear in all documents. Meaning a word that only appears in this document is probably more important for this document than a word that is shared across all documents. With 'min_df' we specify that the words should at least appear in 2 documents. Thus, we exclude all words that only appear in one document.
 
 ```
-python keyword_extraction.py -method pmi_tfidf -corpus /path/to/your_corpus.json -less_freq_than 20
+python keyword_extraction.py --config False --method pmi_tfidf --corpus /path/to/your_corpus.json --less_freq_than 20
 ```
 If you run this code you calculate the Pointwise Mutual Information for the tfidf scores of the words. This can be beneficial as it already accounts for the importance of a word for a specific document when weighting it. Furthermore, we exclude the 20% of words that appear less often.
 
 ```
-python keyword_extraction.py -method log_odds -corpus /path/to/your_corpus.json -comparison_corpus /path/to/your_comparison_corpus.json 
+python keyword_extraction.py --config False --method log_odds --corpus /path/to/your_corpus.json --comparison_corpus /path/to/your_comparison_corpus.json 
 ```
 To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased as it is used to quantify how often certain words appear under normal circumstances. With this information, we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
 
 Or use the config flag to load the configuration from the [config.json](config.json) file
 
 ```
-python keyword_extraction.py --config True
+python keyword_extraction.py
 ```
 
 # Specifics
