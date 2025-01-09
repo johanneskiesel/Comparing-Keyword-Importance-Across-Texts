@@ -149,7 +149,7 @@ To calculate the Log Odd Ratio we need to specify a comparison corpus. This corp
 Or use the config flag to load the configuration from the [config.json](config.json) file
 
 ```
-python keyword_extraction.py -config True
+python keyword_extraction.py --config True
 ```
 
 # Specifics
