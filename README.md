@@ -98,11 +98,15 @@ The method will produce a csv in the following form:
 
 |Words | Document A | Document B | Document C|
 |:---  | :---:   | :---:   | ---:|
-|example | pmi_a | pmi_b | pmi_c |
 progressive |	0.24816330799414105	| 0.24816330799414105	|1.2392023539955106
+ones	| 0.636647135255376 |	0.636647135255376 |	0.6276861812567451
+position |	0.24816330799414105 |	0.24816330799414105 |	1.2392023539955106
+solution |	0.636647135255376 |	0.636647135255376	| 0.6276861812567451
+center	| 0.20851385530561406	| 1.208513855305614	| 0.19955290130698336
+liberal	| 1.208513855305614	| 0.20851385530561406	| 0.19955290130698336
 
 
-Moreover, in the /config_output/ you find a json file that saved all the used parameters for the resulting table.
+Moreover, in the [/config_output/](config_output/) you find a json file that saved all the used parameters for the resulting table.
 
 ```
 {
