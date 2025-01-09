@@ -22,8 +22,8 @@ A social scientist studying climate change discourse on Twitter over time. By ex
 The method consists of one file [keyword_extraction.py](keyword_extraction.py).
 The data used for the demo run is saved in the [/data/](data/) folder.
 Once the method is finished the method will create the following folder structure and output.
-In the /ouptut/ folder you find the csv with the word importance scores.
-In /output_config/ you find a json specify all the parameters used to produce the csv.
+In the /[ouptut/](/output/) folder you find the csv with the word importance scores.
+In [/output_config/](/output_config/) you find a json specify all the parameters used to produce the csv.
 
 ```
 .
