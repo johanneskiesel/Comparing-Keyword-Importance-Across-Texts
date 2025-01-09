@@ -99,6 +99,7 @@ The method will produce a csv in the following form:
 |Words | Document A | Document B | Document C|
 |:---  | :---:   | :---:   | ---:|
 |example | pmi_a | pmi_b | pmi_c |
+progressive |	0.24816330799414105	| 0.24816330799414105	|1.2392023539955106
 
 
 Moreover, in the /config_output/ you find a json file that saved all the used parameters for the resulting table.
