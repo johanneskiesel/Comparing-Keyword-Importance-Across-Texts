@@ -37,12 +37,12 @@ def parse_args():
         help=help_corpus,
     )
 
-    help_corpus = f"If you have a config.json in the working directory it will be loaded when set to True. "
+    help_corpus = f"If you do not have a config.json in the working directory or want to set your setting with the cli tool set this var to False. "
 
     parser.add_argument(
         "--config",
         type=bool,
-        default=False,
+        default=True,
         help=help_corpus,
     )
 
