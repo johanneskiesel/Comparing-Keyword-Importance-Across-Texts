@@ -105,7 +105,7 @@ center	| 0.20851385530561406	| 1.208513855305614	| 0.19955290130698336
 liberal	| 1.208513855305614	| 0.20851385530561406	| 0.19955290130698336
 
 
-Moreover, in the [/config_output/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/config_output/) you find a json file that saved all the used parameters for the resulting table.
+Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config) you find a json file that saved all the used parameters for the resulting table.
 
 ```
 {
