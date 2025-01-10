@@ -19,11 +19,11 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 A social scientist studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., "carbon neutrality"), diminishing terms (e.g., "global warming"), and stable terms (e.g., "climate crisis"), offering insights into evolving public conversations and priorities.
 
 ## Directory Structure
-The method consists of one file [keyword_extraction.py](keyword_extraction.py).
-The data used for the demo run is saved in the [/data/](data/) folder.
+The method consists of one file [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py).
+The data used for the demo run is saved in the [data/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/data/) folder.
 Once the method is finished the method will create the following folder structure and output.
-In the /[ouptut/](/output/) folder you find the csv with the word importance scores.
-In [/output_config/](/output_config/) you find a json specify all the parameters used to produce the csv.
+In the [ouptut/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output/) folder you find the csv with the word importance scores.
+In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config/) you find a json specify all the parameters used to produce the csv.
 
 ```
 .
@@ -46,7 +46,7 @@ In [/output_config/](/output_config/) you find a json specify all the parameters
 ## Environment Setup
 Install Python v>=3.9 (preferably through Anaconda).
 
-Download the repository with or directly copy the raw code from [keyword_extraction.py](keyword_extraction.py), and requirements.txt
+Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
 ```
 git clone https://git.gesis.org/bda/keyword_extraction.git
 ```
@@ -68,7 +68,7 @@ git clone https://git.gesis.org/bda/keyword_extraction.git
 The method handles digital behavior data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
 ## Sample Input Data
-The corpus data used in the script is stored in JSON format at [data/default_corpus.json](data/default_corpus.json) and looks something like this: 
+The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this: 
 
 ```
 {
@@ -106,7 +106,7 @@ center	| 0.20851385530561406	| 1.208513855305614	| 0.19955290130698336
 liberal	| 1.208513855305614	| 0.20851385530561406	| 0.19955290130698336
 
 
-Moreover, in the [/config_output/](config_output/) you find a json file that saved all the used parameters for the resulting table.
+Moreover, in the [/config_output/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/config_output/) you find a json file that saved all the used parameters for the resulting table.
 
 ```
 {
@@ -146,7 +146,7 @@ python keyword_extraction.py --config False --method log_odds --corpus /path/to/
 ```
 To calculate the Log Odd Ratio we need to specify a comparison corpus. This corpus should be unbiased as it is used to quantify how often certain words appear under normal circumstances. With this information, we can alleviate the influence of noise when we calculate the importance of our words for the corpus.
 
-Or use the config flag to load the configuration from the [config.json](config.json) file
+Or use the config flag to load the configuration from the [config.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/config.json) file
 
 ```
 python keyword_extraction.py
