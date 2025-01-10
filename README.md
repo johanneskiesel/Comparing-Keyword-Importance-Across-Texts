@@ -42,7 +42,7 @@ In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Import
 ```
 
 
-# Setup
+
 ## Environment Setup
 Install Python v>=3.9 (preferably through Anaconda).
 
@@ -63,8 +63,7 @@ git clone https://git.gesis.org/bda/keyword_extraction.git
 - The user should be able to reuse the method following the information provided
 
 
-# Usage
-## Input Data (Digital Behavior Data datasets)
+## Input Data
 The method handles digital behavior data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
 ## Sample Input Data
@@ -152,7 +151,6 @@ Or use the config flag to load the configuration from the [config.json](https://
 python keyword_extraction.py
 ```
 
-# Specifics
 ## Contact Details
 Stephan.Linzbach@gesis.org
 
