@@ -71,9 +71,9 @@ The corpus data used in the script is stored in JSON format at [data/default_cor
 
 ```
 {
-    'Document A': "This is the liberal solution: All text is good as well as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
-    'Document B': "This is the center solution: They are bad not good, if everyone remains on his own position we are all alone which is bad . We are the center ones . Not the progressive nor the liberal ones .",
-    'Document C': "This is the progressive solution: Another groups position is the problem. They dont move from their position . We are the progressive ones . Not the liberal nor the center ones . "
+    "Document A": "This is the liberal solution: All text is good as well as bad. The good one has to take his own position. We are the liberal ones. Not the center nor the progressive ones.",
+    "Document B": "This is the center solution: They are bad, not good, if everyone remains in his own position we are all alone which is bad. We are the center ones. Not the progressive nor the liberal ones.",
+    "Document C": "This is the progressive solution: Another group's position is the problem. They don't move from their position. We are the progressive ones. Not the liberal nor the center ones."
 }
 ```
 
@@ -93,7 +93,7 @@ Once you are familiar with the possible parameters you can run the code like thi
 python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json
 ```
 
-The method will produce a csv in the following form:
+The method will produce a CSV in the following form:
 
 |Words | Document A | Document B | Document C|
 |:---  | :---:   | :---:   | ---:|
@@ -142,7 +142,7 @@ Compute importance scores based on TF-IDF, excluding words that appear in fewer 
 ```
 python keyword_extraction.py --config False --method tfidf --corpus /path/to/your_corpus.json --min_df 2
 ```
-TF-IDF highlights words that are unique to specific documents compared to those shared across all documents. With 'min_df' we specify that the words should at least appear in 2 documents. Thus, we exclude all words that only appear in one document.
+TF-IDF highlights words that are unique to specific documents compared to those shared across all documents. With 'min_df' we specify that the words should appear at least in 2 documents. Thus, we exclude all words that only appear in one document.
 
 __3. PMI with TF-IDF__
 Combine PMI with TF-IDF scores, excluding the least frequent 20% of words:
