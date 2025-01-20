@@ -2,15 +2,15 @@
 
 ## Description
 This method identifies and ranks the most important words in a collection of documents, such as articles, speeches, or social media posts, by analyzing their frequency and uniqueness within each document. 
-Using measures like TF-IDF, PMI, and Log Odds Ratio, it highlights terms that are especially relevant to a specific document while contrasting them with others in the collection. 
+Using measures like [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), [PMI](https://en.wikipedia.org/wiki/Pointwise_mutual_information), and [Log Odds Ratio](https://en.wikipedia.org/wiki/Odds_ratio), it highlights terms that are especially relevant to a specific document while contrasting them with others in the collection. 
 This approach is ideal for uncovering key themes, comparing language use across texts, and tracking shifts in terminology or public discourse over time, making it a valuable tool for summarizing content or analyzing trends.
 
 
 | | TF-IDF | Log Odds Ratio| PMI |
 |:---|:---:|:---:|:---:|
 | Definition | Measures the importance of a term in a document not only by frequent usage but also through the absence of use in other documents. | Quantifies the increase of the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
-| When to use?       | Finding terms that are characteristic for a document and are only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic for a document and are seldom used by other documents. |
-| Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between term and the document. |
+| When to use?       | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
+| Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
 
 ## Keywords
 Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
@@ -21,9 +21,9 @@ A social scientist studying climate change discourse on Twitter over time. By ex
 ## Directory Structure
 The method consists of one file [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py).
 The data used for the demo run is saved in the [data/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/data/) folder.
-Once the method is finished the method will create the following folder structure and output.
-In the [ouptut/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output/) folder you find the csv with the word importance scores.
-In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config/) you find a json specify all the parameters used to produce the csv.
+Once the method is finished it will create the following folder structure and output.
+In the [ouptut/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output/) folder you can find the CSV with the word importance scores.
+In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config/) you find a JSON specify all the parameters used to produce the CSV.
 
 ```
 .
@@ -64,14 +64,14 @@ git clone https://git.gesis.org/bda/keyword_extraction.git
 
 
 ## Input Data
-The method handles digital behavior data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
+The method handles digital behavioral data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
 ## Sample Input Data
 The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this: 
 
 ```
 {
-    'Document A': "This is the liberal solution: All text is good aswell as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
+    'Document A': "This is the liberal solution: All text is good as well as bad. The good one has to take his own position . We are the liberal ones . Not the center nor the progressive ones.",
     'Document B': "This is the center solution: They are bad not good, if everyone remains on his own position we are all alone which is bad . We are the center ones . Not the progressive nor the liberal ones .",
     'Document C': "This is the progressive solution: Another groups position is the problem. They dont move from their position . We are the progressive ones . Not the liberal nor the center ones . "
 }
