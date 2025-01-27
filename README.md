@@ -18,7 +18,7 @@ Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
 ## Use Case
 A social scientist studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
 
-## Directory Structure
+## Repo Structure
 The method consists of one file [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py).
 The data used for the demo run is saved in the [data/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/data/) folder.
 Once the method is finished it will create the following folder structure and output.
@@ -44,29 +44,26 @@ In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Import
 
 
 ## Environment Setup
-Install Python v>=3.9 (preferably through Anaconda).
+- Install Python v>=3.9 (preferably through Anaconda).
 
-Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
+- Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
 ```
 git clone https://git.gesis.org/bda/keyword_extraction.git
 ```
 
-
-
-## Installing Dependencies
-- Installing all the packages and libraries with specific versions required to run this method
+- Install all the packages and libraries with specific versions required to run this method
 
   ```
   pip install -r requirements.txt
   ```
 
-- The user should be able to reuse the method following the information provided
-
 
 ## Input Data
 The method handles digital behavioral data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
-## Sample Input Data
+## Sample Input  and Output Data
+
+### Input
 The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this: 
 
 ```
@@ -77,7 +74,7 @@ The corpus data used in the script is stored in JSON format at [data/default_cor
 }
 ```
 
-## Sample Output
+### Output
 This file can be run from the Terminal with:
 
 
