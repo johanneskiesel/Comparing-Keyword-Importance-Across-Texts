@@ -12,58 +12,12 @@ This approach is ideal for uncovering key themes, comparing language use across 
 | When to use?       | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
 | Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
 
-## Keywords
-Comparative Analysis, Keyword Extraction, Word Importance, Log Odd Ratio,
-
-## Use Case
+## Use Cases
 A social scientist studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
-
-## Repo Structure
-The method consists of one file [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py).
-The data used for the demo run is saved in the [data/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/data/) folder.
-Once the method is finished it will create the following folder structure and output.
-In the [ouptut/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output/) folder you can find the CSV with the word importance scores.
-In [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config/) you find a JSON specify all the parameters used to produce the CSV.
-
-```
-.
-├── keyword_extraction.py
-├── config.json
-├── output
-│   └── the-time-you-ran-the-code_pmi.csv
-├── output_config
-│   └── the-time-you-ran-the-code_pmi.json
-├── data
-│   └── default_corpus.json
-│   └── default_comparison_corpus.json
-├── README.md
-└── requirements.txt
-
-```
-
-
-
-## Environment Setup
-- Install Python v>=3.9 (preferably through Anaconda).
-
-- Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
-```
-git clone https://git.gesis.org/bda/keyword_extraction.git
-```
-
-- Install all the packages and libraries with specific versions required to run this method
-
-  ```
-  pip install -r requirements.txt
-  ```
-
 
 ## Input Data
 The method handles digital behavioral data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
-## Sample Input  and Output Data
-
-### Input
 The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this: 
 
 ```
@@ -74,22 +28,7 @@ The corpus data used in the script is stored in JSON format at [data/default_cor
 }
 ```
 
-### Output
-This file can be run from the Terminal with:
-
-
-```
-python keyword_extraction.py -help
-```
-
-This call will return the list of parameters you can specify.
-There you can find an explanation for all and their respective functionality.
-Once you are familiar with the possible parameters you can run the code like this:
-
-```
-python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json
-```
-
+## Output Data
 The method will produce a CSV in the following form:
 
 |Words | Document A | Document B | Document C|
@@ -119,6 +58,23 @@ Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-
 
 ```
 
+## Hardware Requirements
+The method runs on a cheap virtual machine provided by cloud computing company (2 x86 CPU core, 4 GB RAM, 40GB HDD).
+
+## Environment Setup
+- Install Python v>=3.9 (preferably through Anaconda).
+
+- Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
+```
+git clone https://git.gesis.org/bda/keyword_extraction.git
+```
+
+- Install all the packages and libraries with specific versions required to run this method
+
+  ```
+  pip install -r requirements.txt
+  ```
+
 ## How to Use
 You can configure the parameters in the [config.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/config.json) file and run the script:
 ```
@@ -126,7 +82,18 @@ python keyword_extraction.py
 ```
 Alternatively, you can set the parameters directly in the command line when running the script.
 
-### Example Commands and Parameters
+To return the list of parameters you can specify, execute:
+
+```
+python keyword_extraction.py -help
+```
+It also provides explanation on the role of the parameters in altering the method behavior. Next, execute:
+
+```
+python keyword_extraction.py -method pmi -corpus /path/to/your_corpus.json
+```
+
+Example Commands and Parameters
 __1. Pointwise Mutual Information (PMI)__
    Calculate PMI for words that appear in more than 80% of the documents:
 ```
@@ -156,8 +123,6 @@ python keyword_extraction.py --config False --method log_odds --corpus /path/to/
 A comparison corpus is required to determine word frequencies under "normal" circumstances, reducing noise and highlighting significant terms.
 
 
-
-
 ## Contact Details
-Stephan.Linzbach@gesis.org
+[Stephan.Linzbach@gesis.org](mailto:Stephan.Linzbach@gesis.org)
 
