@@ -71,9 +71,9 @@ git clone https://git.gesis.org/bda/keyword_extraction.git
 
 - Install all the packages and libraries with specific versions required to run this method
 
-  ```
-  pip install -r requirements.txt
-  ```
+```
+pip install -r requirements.txt
+```
 
 ## How to Use
 You can configure the parameters in the [config.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/config.json) file and run the script:
