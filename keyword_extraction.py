@@ -5,12 +5,9 @@ import numpy as np
 import argparse
 import pickle
 import json
-from pathlib import Path
-
 import os
 import re
 import csv
-import yaml
 
 
 def parse_args():
@@ -24,7 +21,7 @@ def parse_args():
     parser.add_argument(
         "--corpus",
         type=str,
-        default=corpus_default,
+        # default=corpus_default,
         help=help_corpus,
     )
 
@@ -36,11 +33,11 @@ def parse_args():
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default=comparison_corpus_default,
+        # default=comparison_corpus_default,
         help=help_corpus,
     )
 
-    help_corpus = f"If you do not have a config.yml in the working directory or want to set your setting with the cli tool set this var to False. "
+    help_corpus = f"If you do not have a config.json in the working directory or want to set your setting with the cli tool set this var to False. "
 
     parser.add_argument(
         "--config",
@@ -81,6 +78,7 @@ def parse_args():
         "--method",
         type=str,
         default='tfidf_pmi',
+        choices=implemented_methods,
         help=f"Choose a method from the list of implemented methods {implemented_methods}"
     )
 
@@ -107,12 +105,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def get_count_vectorizer(min_df, stop_words, **kwargs):
-    return CountVectorizer(strip_accents='unicode', min_df=min_df, stop_words=stop_words)
+def get_count_vectorizer(min_df,stop_words,max_df = 1 , **kwargs):
+    return CountVectorizer(strip_accents='unicode', stop_words=stop_words)
 
 
 def get_tfidf_vectorizer(min_df, stop_words, **kwargs):
-    return TfidfVectorizer(strip_accents='unicode', min_df=min_df, stop_words=stop_words)
+    return TfidfVectorizer(strip_accents='unicode', stop_words=stop_words)
 
 
 def transform_to_tfidf(count_matrix):
@@ -136,7 +134,7 @@ def transform(vectorizer, corpus):
 
 
 def remove_non_words(features):
-    is_word = np.array([not re.search('\d', f) for f in features])
+    is_word = np.array([not re.search(r'\d', f) for f in features])
     return is_word
 
 
@@ -150,7 +148,7 @@ def calc_upper_and_lower_freq(X, more_freq_than, less_freq_than):
     return np.logical_and(min_count, max_count)
 
 
-def calc_matrix(X, X_count):
+def calc_pmi_matrix(X, X_count):
     total_docs = len(X_count)
     term_count = np.array(X_count.sum(axis=0)).flatten()
     doc_count = np.array(X_count.sum(axis=1)).flatten()
@@ -248,13 +246,13 @@ def create_keyword_dictionary(corpus: list,
         return X
 
     def pmi(X, **kwargs):
-        pmi_matrix = calc_matrix(X, X)
+        pmi_matrix = calc_pmi_matrix(X, X)
 
         return pmi_matrix
 
     def tfidf_pmi(X, **kwargs):
         X_tfidf = tfidf(X, **kwargs)
-        pmi_matrix = calc_matrix(X, X_tfidf)
+        pmi_matrix = calc_pmi_matrix(X, X_tfidf)
 
         return pmi_matrix
 
@@ -318,6 +316,7 @@ def write_to_csv(output_file, data):
                 word_dict = dict(zip(content["words"], content["values"]))
                 values.append(word_dict.get(word, None))
             writer.writerow([word] + values)
+    print('output file compiled', {output_file})
     return True
 
 def main():
@@ -326,95 +325,60 @@ def main():
     implemented_methods = ['tfidf', 'log_odds', 'pmi', 'tfidf_pmi']
     filename = generate_timestamp()
 
-    def load_and_sync_config(config_path="config.yml"):
-        config_path = Path(config_path)
-        # 1) load YAML → dict (if empty, get {})
-        cfg: dict = yaml.safe_load(config_path.read_text()) or {}
-        if not isinstance(cfg, dict):
-            raise ValueError(f"Expected top‐level mapping in {config_path}, got {type(cfg)}")
+    args = vars(args)  # Convert Namespace to dictionary
+    if args.pop("config"):
+        # Load config
+        with open("./config.json") as f:
+            config = json.load(f)
 
-        # 2) inject as argparse defaults
-        parser = parse_args()
-        parser.set_defaults(**cfg)
+        # Update args only if the key is not already set
+        for k, v in config.items():
+            if k not in args or args[k] is None:  # Only update if not passed from command line
+                args[k] = v
 
-        # 3) parse real CLI → Namespace
-        args = parser.parse_args()
-
-        # 4) merge back into our dict
-        #    Only overwrite keys for which the user actually passed something (i.e. non‐None or flags)
-        for key, val in vars(args).items():
-            # for flags (store_true), val==False means user didn’t pass it, so skip
-            # for optional ints (min_df), val is either None or int; we overwrite even None
-            is_flag   = key in ("only_words", "return_values")
-            passed    = (is_flag and val) or (not is_flag and val is not None)
-            if passed:
-                cfg[key] = val
-
-        # 5) write YAML back out
-        config_path.write_text(yaml.safe_dump(cfg, sort_keys=False))
-        return args
-
-    output_dict = load_and_sync_config("./config.yml")
-
-    corpus_path   = args.corpus
-    language      = args.language
-    min_df        = args.min_df
-    more_freq_than= args.more_freq_than
-    less_freq_than= args.less_freq_than
-    method        = args.method
-    return_values = args.return_values
-
-    # Load the corpus and labels
-    if isinstance(corpus_path, str):
-        with open(corpus_path) as f:
-            corpus_data = json.load(f)
-            corpus = [doc['text'] for doc in corpus_data]
-            labels = [doc['label'] for doc in corpus_data]
-
-
+    output_dict = args.copy()
+    corpus = args.pop('corpus')
+    language = args.pop('language')
+    min_df = args.pop('min_df')
+    more_freq_than = args.pop('more_freq_than')
+    less_freq_than = args.pop('less_freq_than')
+    method = args.pop('method')
+    return_values = args.pop('return_values')
     assert method in implemented_methods, f"Please make sure that the method={method} is part of the implemented_methods={implemented_methods}."
-
     if isinstance(corpus, str):
         with open(corpus) as f:
             corpus = json.load(f)
-    if isinstance(args.comparison_corpus, str):
+    if isinstance(args["comparison_corpus"], str):
         try:
-            with open(args.comparison_corpus, "rb") as f:
-                args.comparison_corpus_d = pickle.load(f)
-            print("Corpus path:", corpus_path)
+            with open(args["comparison_corpus"], "rb") as f:
+                args["comparison_corpus_d"] = pickle.load(f)
+                print(len(args["comparison_corpus"]))
         except:
-            with open(args.comparison_corpus) as f:
-                args.comparison_corpus_d = json.load(f)
-
+            with open(args["comparison_corpus"]) as f:
+                args["comparison_corpus_d"] = json.load(f)
+    print(f"Number of documents: {list(corpus.keys())}")
+    print(f"Sample document: {list(corpus.values())}")
 
     # Do something with the parsed arguments
-    print("Corpus path:", output_dict.corpus)
+    print("Corpus path:", output_dict['corpus'])
     print("Language:", language)
     print("Minimum document frequency:", min_df)
     print("More frequent than:", more_freq_than)
     print("Less frequent than:", less_freq_than)
     print("Method", method)
 
-    argd = vars(args)        # now argd is a plain dict
+    keyword_dict = create_keyword_dictionary(corpus=list(corpus.values()),
+                                             labels=list(corpus.keys()),
+                                             min_df=min_df,
+                                             more_freq_than=more_freq_than,
+                                             less_freq_than=less_freq_than,
+                                             language=language,
+                                             method=method,
+                                             return_values=return_values,
+                                             **args)
 
-    # pop off the ones you’ve already bound to locals...
-    corpus        = argd.pop("corpus")
-    method        = argd.pop("method")
-    
-    # then later:
-    keyword_dict = create_keyword_dictionary(
-        corpus=corpus,
-        labels=labels,
-        min_df=min_df,
-        more_freq_than=more_freq_than,
-        less_freq_than=less_freq_than,
-        language=language,
-        method=method,
-        return_values=return_values,
-        **argd            # <-- this is now a dict
-    )
     try:
-        del args.comparison_corpus_d
+        del args["comparison_corpus_d"]
     except:
         pass
 

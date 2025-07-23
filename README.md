@@ -6,19 +6,28 @@ This method identifies and ranks the most important words in a collection of doc
 
 |   | TF-IDF | Log Odds Ratio | PMI |
 |:-----------------|:----------------:|:----------------:|:----------------:|
+|   | TF-IDF | Log Odds Ratio | PMI |
+|:-----------------|:----------------:|:----------------:|:----------------:|
 | Definition | Measures the importance of a term in a document not only by frequent usage but also through the absence of use in other documents. | Quantifies the increase of the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
 | When to use? | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
 | Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
 
 ## Use Cases
 
+
 Studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
+
+Analyzing political speeches to identify shifts in rhetoric. Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
+
+Examining public sentiment in online forums. By comparing keyword importance across threads, researchers can uncover dominant themes, recurring concerns, or evolving opinions on topics like healthcare, education, or economic policies.
+
+Studying cultural narratives in literature or media. Social scientists can analyze how specific terms (e.g., *identity*, *tradition*, *modernity*) are emphasized in different texts, revealing underlying societal values, conflicts, or trends over time.
 
 ## Input Data
 
 The method handles digital behavioral data, including social media posts, comments, search queries, clickstream text (e.g., website titles), forum threads, and open-text survey responses.
 
-The script uses corpus data stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this:
+The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this:
 
 ```         
 {
@@ -35,7 +44,7 @@ The script uses corpus data stored in JSON format at [data/default_corpus.json](
 The method will produce a CSV in the following form:
 
 | Words       |     Document A      |     Document B      |          Document C |
-|:----------------|:-----------------:|:-----------------:|----------------:|
+|:-----------------|:-----------------:|:-----------------:|-----------------:|
 | progressive | 0.24816330799414105 | 0.24816330799414105 |  1.2392023539955106 |
 | ones        |  0.636647135255376  |  0.636647135255376  |  0.6276861812567451 |
 | position    | 0.24816330799414105 | 0.24816330799414105 |  1.2392023539955106 |
@@ -61,11 +70,11 @@ Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-
 
 ## Hardware Requirements
 
-The method runs on a standard virtual machine provided by cloud computing company (2 x86 CPU core, 4 GB RAM, 40GB HDD).
+The method runs on a cheap virtual machine provided by cloud computing company (2 x86 CPU core, 4 GB RAM, 40GB HDD).
 
 ## Environment Setup
 
--   Install Python\>=3.9 (preferably through Anaconda).
+-   Install Python v\>=3.9 (preferably through Anaconda).
 
 -   Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
 
@@ -89,6 +98,7 @@ python keyword_extraction.py
 
 Alternatively, you can set the parameters directly in the command line when running the script.
 
+To return the list of parameters you can specify, execute:
 **`Command Line Options`**
 
 ```         
@@ -121,6 +131,10 @@ options:
 
 It also provides explanation on the role of the parameters in altering the method behavior. Next, execute:
 
+```         
+python keyword_extraction.py --method pmi --corpus /path/to/your_corpus.json
+```
+
 ## Example Commands and parameters
 
 Below are example commands demonstrating how to use the method with different configurations and parameters to extract and analyze keyword importance effectively.
@@ -144,7 +158,7 @@ TF-IDF highlights words that are unique to specific documents compared to those 
 **3. PMI with TF-IDF** Combine PMI with TF-IDF scores, excluding the least frequent 20% of words. This is being calculated using the weighted term frequencies from the TF-IDF matrix rather than raw term frequencies. The result is a **PMI matrix** that incorporates the TF-IDF weighting into the PMI calculation.
 
 ```         
-python keyword_extraction.py --config False --method pmi_tfidf --corpus /path/to/your_corpus.json --less_freq_than 20
+python keyword_extraction.py --config False --method tfidf_pmi --corpus /path/to/your_corpus.json --less_freq_than 20
 ```
 
 This approach accounts for both document-specific importance and overall word weighting.
