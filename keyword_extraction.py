@@ -356,8 +356,6 @@ def main():
         except:
             with open(args["comparison_corpus"]) as f:
                 args["comparison_corpus_d"] = json.load(f)
-    print(f"Number of documents: {list(corpus.keys())}")
-    print(f"Sample document: {list(corpus.values())}")
 
     # Do something with the parsed arguments
     print("Corpus path:", output_dict['corpus'])
