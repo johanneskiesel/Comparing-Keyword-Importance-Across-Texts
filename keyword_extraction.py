@@ -21,7 +21,7 @@ def parse_args():
     parser.add_argument(
         "--corpus",
         type=str,
-        default=corpus_default,
+        # default=corpus_default,
         help=help_corpus,
     )
 
@@ -33,7 +33,7 @@ def parse_args():
     parser.add_argument(
         "--comparison_corpus",
         type=str,
-        default=comparison_corpus_default,
+        # default=comparison_corpus_default,
         help=help_corpus,
     )
 
@@ -78,6 +78,7 @@ def parse_args():
         "--method",
         type=str,
         default='tfidf_pmi',
+        choices=implemented_methods,
         help=f"Choose a method from the list of implemented methods {implemented_methods}"
     )
 
@@ -104,12 +105,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def get_count_vectorizer(min_df, stop_words, **kwargs):
-    return CountVectorizer(strip_accents='unicode', min_df=min_df, stop_words=stop_words)
+def get_count_vectorizer(min_df,stop_words,max_df = 1 , **kwargs):
+    return CountVectorizer(strip_accents='unicode', stop_words=stop_words)
 
 
 def get_tfidf_vectorizer(min_df, stop_words, **kwargs):
-    return TfidfVectorizer(strip_accents='unicode', min_df=min_df, stop_words=stop_words)
+    return TfidfVectorizer(strip_accents='unicode', stop_words=stop_words)
 
 
 def transform_to_tfidf(count_matrix):
@@ -133,7 +134,7 @@ def transform(vectorizer, corpus):
 
 
 def remove_non_words(features):
-    is_word = np.array([not re.search('\d', f) for f in features])
+    is_word = np.array([not re.search(r'\d', f) for f in features])
     return is_word
 
 
@@ -315,6 +316,7 @@ def write_to_csv(output_file, data):
                 word_dict = dict(zip(content["words"], content["values"]))
                 values.append(word_dict.get(word, None))
             writer.writerow([word] + values)
+    print('output file compiled', {output_file})
     return True
 
 def main():
@@ -322,17 +324,17 @@ def main():
 
     implemented_methods = ['tfidf', 'log_odds', 'pmi', 'tfidf_pmi']
     filename = generate_timestamp()
-    
-    args = vars(args)
-    if args.pop("config"):
 
-        # load config
+    args = vars(args)  # Convert Namespace to dictionary
+    if args.pop("config"):
+        # Load config
         with open("./config.json") as f:
             config = json.load(f)
 
-        # update args
+        # Update args only if the key is not already set
         for k, v in config.items():
-            args[k] = v
+            if k not in args or args[k] is None:  # Only update if not passed from command line
+                args[k] = v
 
     output_dict = args.copy()
     corpus = args.pop('corpus')
@@ -342,9 +344,7 @@ def main():
     less_freq_than = args.pop('less_freq_than')
     method = args.pop('method')
     return_values = args.pop('return_values')
-
     assert method in implemented_methods, f"Please make sure that the method={method} is part of the implemented_methods={implemented_methods}."
-
     if isinstance(corpus, str):
         with open(corpus) as f:
             corpus = json.load(f)
@@ -356,7 +356,6 @@ def main():
         except:
             with open(args["comparison_corpus"]) as f:
                 args["comparison_corpus_d"] = json.load(f)
-
 
     # Do something with the parsed arguments
     print("Corpus path:", output_dict['corpus'])
