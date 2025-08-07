@@ -6,8 +6,6 @@ This method identifies and ranks the most important words in a collection of doc
 
 |   | TF-IDF | Log Odds Ratio | PMI |
 |:-----------------|:----------------:|:----------------:|:----------------:|
-|   | TF-IDF | Log Odds Ratio | PMI |
-|:-----------------|:----------------:|:----------------:|:----------------:|
 | Definition | Measures the importance of a term in a document not only by frequent usage but also through the absence of use in other documents. | Quantifies the increase of the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
 | When to use? | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
 | Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
