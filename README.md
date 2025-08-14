@@ -10,16 +10,12 @@ This method identifies and ranks the most important words in a collection of doc
 | When to use? | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
 | Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
 
-## Use Cases
+## Example Use Cases
 
-
-Studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
-
-Analyzing political speeches to identify shifts in rhetoric. Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
-
-Examining public sentiment in online forums. By comparing keyword importance across threads, researchers can uncover dominant themes, recurring concerns, or evolving opinions on topics like healthcare, education, or economic policies.
-
-Studying cultural narratives in literature or media. Social scientists can analyze how specific terms (e.g., *identity*, *tradition*, *modernity*) are emphasized in different texts, revealing underlying societal values, conflicts, or trends over time.
+* __Studying climate change discourse on Twitter over time:__ By extracting and comparing keywords, this method can reveal emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
+* __Analyzing political speeches to identify shifts in rhetoric:__ Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
+* __Examining public sentiment in online forums:__ By comparing keyword importance across threads, researchers can uncover dominant themes, recurring concerns, or evolving opinions on topics like healthcare, education, or economic policies.
+* __Studying cultural narratives in literature or media:__ Social scientists can analyze how specific terms (e.g., *identity*, *tradition*, *modernity*) are emphasized in different texts, revealing underlying societal values, conflicts, or trends over time.
 
 ## Input Data
 
