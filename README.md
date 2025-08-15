@@ -10,7 +10,7 @@ This method identifies and ranks the most important words in a collection of doc
 | When to use? | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
 | Interpretability | High scores indicate greater importance of the term within the document. | Positive values indicate association with the document. Negative values indicate low importance of the term for the document. | High scores indicate strength of association between the term and document. Low scores indicate disassociation between the term and the document. |
 
-## Example Use Cases
+## Use Cases
 
 * __Studying climate change discourse on Twitter over time:__ By extracting and comparing keywords, this method can reveal emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
 * __Analyzing political speeches to identify shifts in rhetoric:__ Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
@@ -64,7 +64,7 @@ Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-
 
 ## Hardware Requirements
 
-The method runs on a cheap virtual machine provided by a cloud computing company (2 x86 CPU cores, 4 GB RAM, 40GB HDD).
+The method runs on a small virtual machine provided by a cloud computing company (2 x86 CPU core, 4 GB RAM, 40GB HDD).
 
 ## Environment Setup
 
