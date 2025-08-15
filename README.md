@@ -6,22 +6,16 @@ This method identifies and ranks the most important words in a collection of doc
 
 |   | TF-IDF | Log Odds Ratio | PMI |
 |:-----------------|:----------------:|:----------------:|:----------------:|
-|   | TF-IDF | Log Odds Ratio | PMI |
-|:-----------------|:----------------:|:----------------:|:----------------:|
-| Definition | Measures the importance of a term in a document not only by frequent usage but also through the absence of use in other documents. | Quantifies the increase of the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
+| Definition | Measures the importance of a term in a document not only by frequent usage but also through its absence in other documents. | Quantifies the increase in the relative importance of a term for a document in comparison to all other documents. | Measures the association between a term and a document, indicating a dependency. |
 | When to use? | Finding terms that are characteristic of a document and only used by a subset of other documents. | Finding terms that have higher relevance for a certain document. | Finding terms that are characteristic of a document and seldom used by other documents. |
-| Interpretability | High Scores: indicate greater importance of the term within the document. | Positive: indicates association with the document. Negative: indicates low importance of term for the document. | High Scores: Indicate strength of association between term and document. Low Scores: indicate disassociation between the term and the document. |
+| Interpretability | High scores indicate greater importance of the term within the document. | Positive values indicate association with the document. Negative values indicate low importance of the term for the document. | High scores indicate strength of association between the term and document. Low scores indicate disassociation between the term and the document. |
 
-## Use Cases
+## Example Use Cases
 
-
-Studying climate change discourse on Twitter over time. By extracting and comparing keywords, it reveals emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
-
-Analyzing political speeches to identify shifts in rhetoric. Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
-
-Examining public sentiment in online forums. By comparing keyword importance across threads, researchers can uncover dominant themes, recurring concerns, or evolving opinions on topics like healthcare, education, or economic policies.
-
-Studying cultural narratives in literature or media. Social scientists can analyze how specific terms (e.g., *identity*, *tradition*, *modernity*) are emphasized in different texts, revealing underlying societal values, conflicts, or trends over time.
+* __Studying climate change discourse on Twitter over time:__ By extracting and comparing keywords, this method can reveal emerging terms (e.g., *carbon neutrality*), diminishing terms (e.g., *global warming*), and stable terms (e.g., *climate crisis*), offering insights into evolving public conversations and priorities.
+* __Analyzing political speeches to identify shifts in rhetoric:__ Social scientists can track how key terms (e.g., *freedom*, *equality*, *security*) gain or lose prominence across different administrations or during election campaigns, providing a lens into changing political priorities and strategies.
+* __Examining public sentiment in online forums:__ By comparing keyword importance across threads, researchers can uncover dominant themes, recurring concerns, or evolving opinions on topics like healthcare, education, or economic policies.
+* __Studying cultural narratives in literature or media:__ Social scientists can analyze how specific terms (e.g., *identity*, *tradition*, *modernity*) are emphasized in different texts, revealing underlying societal values, conflicts, or trends over time.
 
 ## Input Data
 
@@ -29,7 +23,7 @@ The method handles digital behavioral data, including social media posts, commen
 
 The corpus data used in the script is stored in JSON format at [data/default_corpus.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/data/default_corpus.json) and looks something like this:
 
-```         
+```JSON
 {
     "Document A": "This is the liberal solution: All text is good as well as bad. The good one has to take his own position. We are the liberal ones. Not the center nor the progressive ones.",
     "Document B": "This is the center solution: They are bad, not good, if everyone remains in his own position we are all alone which is bad. We are the center ones. Not the progressive nor the liberal ones.",
@@ -37,7 +31,7 @@ The corpus data used in the script is stored in JSON format at [data/default_cor
 }
 ```
 
-[***Note*** - The corpus should ideally be a larger text dataset to produce more meaningful results.]{.underline}
+<u>__*Note*__: The corpus should ideally be a larger text dataset to produce more meaningful results.</u>
 
 ## Output Data
 
@@ -52,9 +46,9 @@ The method will produce a CSV in the following form:
 | center      | 0.20851385530561406 |  1.208513855305614  | 0.19955290130698336 |
 | liberal     |  1.208513855305614  | 0.20851385530561406 | 0.19955290130698336 |
 
-Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config) you find a JSON file that saved all the used parameters for the resulting table.
+Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/tree/main/output_config) directory, you will find a JSON file that saves all the used parameters for the resulting table.
 
-```         
+```JSON
 {
     "corpus": "/path/to/your_corpus.json",
     "comparison_corpus": "",
@@ -70,21 +64,21 @@ Moreover, in the [output_config/](https://github.com/Stephan-Linzbach/Comparing-
 
 ## Hardware Requirements
 
-The method runs on a cheap virtual machine provided by cloud computing company (2 x86 CPU core, 4 GB RAM, 40GB HDD).
+The method runs on a cheap virtual machine provided by a cloud computing company (2 x86 CPU cores, 4 GB RAM, 40GB HDD).
 
 ## Environment Setup
 
--   Install Python v\>=3.9 (preferably through Anaconda).
+- Install Python v>=3.9 (preferably through Anaconda)
 
--   Download the repository with or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py), and requirements.txt
+- Download the repository or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py) and requirements.txt
 
-```         
+```bash
 git clone https://git.gesis.org/bda/keyword_extraction.git
 ```
 
--   Install all the packages and libraries with specific versions required to run this method
+- Install all the packages and libraries with specific versions required to run this method:
 
-```         
+```bash
 pip install -r requirements.txt
 ```
 
@@ -92,22 +86,21 @@ pip install -r requirements.txt
 
 You can configure the parameters in the [config.json](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/config.json) file and run the script:
 
-```         
+```bash
 python keyword_extraction.py
 ```
 
 Alternatively, you can set the parameters directly in the command line when running the script.
 
-To return the list of parameters you can specify, execute:
-**`Command Line Options`**
+To see the list of parameters you can specify, use the **Command Line Options**:
 
-```         
-python keyword_extraction.py -help
+```bash
+python keyword_extraction.py --help
 ```
 
-Below is the output of the **`-help`** command, which lists all available options for the script:
+Below is the output of the `--help` command, which lists all available options for the script:
 
-```         
+```text
 options:
     -h, --help            show this help message and exit
     --corpus CORPUS       A path to a json corpus in this format ./data/default_corpus.json.
@@ -129,43 +122,43 @@ options:
                                                 Use this parameter if you want the associated values of the respective method to be returned.
 ```
 
-It also provides explanation on the role of the parameters in altering the method behavior. Next, execute:
+It also provides explanations on the role of the parameters in altering the method behavior. Next, execute:
 
-```         
+```bash
 python keyword_extraction.py --method pmi --corpus /path/to/your_corpus.json
 ```
 
-## Example Commands and parameters
+## Example Commands and Parameters
 
 Below are example commands demonstrating how to use the method with different configurations and parameters to extract and analyze keyword importance effectively.
 
-**1. Pointwise Mutual Information (PMI)** Calculate PMI for words that appear in more than 80% of the documents:
+__1. Pointwise Mutual Information (PMI)__ - Calculate PMI for words that appear in more than 80% of the documents:
 
-```         
+```bash
 python keyword_extraction.py --config False --method pmi --corpus /path/to/your_corpus.json --more_freq_than 80
 ```
 
 Words that occur frequently across documents are prioritized.
 
-**2. TF-IDF (Term Frequency-Inverse Document Frequency)** Compute importance scores based on TF-IDF, excluding words that appear in fewer than two documents:
+__2. TF-IDF (Term Frequency-Inverse Document Frequency)__ - Compute importance scores based on TF-IDF, excluding words that appear in fewer than two documents:
 
-```         
+```bash
 python keyword_extraction.py --config False --method tfidf --corpus /path/to/your_corpus.json --min_df 2
 ```
 
-TF-IDF highlights words that are unique to specific documents compared to those shared across all documents. With 'min_df' we specify that the words should appear at least in 2 documents. Thus, we exclude all words that only appear in one document.
+TF-IDF highlights words that are unique to specific documents compared to those shared across all documents. With `min_df`, we specify that words should appear in at least 2 documents. Thus, we exclude all words that only appear in one document.
 
-**3. PMI with TF-IDF** Combine PMI with TF-IDF scores, excluding the least frequent 20% of words. This is being calculated using the weighted term frequencies from the TF-IDF matrix rather than raw term frequencies. The result is a **PMI matrix** that incorporates the TF-IDF weighting into the PMI calculation.
+__3. PMI with TF-IDF__ - Combine PMI with TF-IDF scores, excluding the least frequent 20% of words. This is calculated using the weighted term frequencies from the TF-IDF matrix rather than raw term frequencies. The result is a __PMI matrix__ that incorporates the TF-IDF weighting into the PMI calculation.
 
-```         
+```bash
 python keyword_extraction.py --config False --method tfidf_pmi --corpus /path/to/your_corpus.json --less_freq_than 20
 ```
 
 This approach accounts for both document-specific importance and overall word weighting.
 
-**4. Log Odds Ratio** Compute Log Odds Ratio using a comparison corpus to identify word importance:
+__4. Log Odds Ratio__ - Compute Log Odds Ratio using a comparison corpus to identify word importance:
 
-```         
+```bash
 python keyword_extraction.py --config False --method log_odds --corpus /path/to/your_corpus.json --comparison_corpus /path/to/your_comparison_corpus.json 
 ```
 
