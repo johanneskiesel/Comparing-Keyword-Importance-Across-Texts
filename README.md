@@ -68,7 +68,11 @@ The method runs on a small virtual machine provided by a cloud computing company
 
 ## Environment Setup
 
-- Install Python v>=3.9 (preferably through Anaconda)
+- Install Python version>=3.9 (preferably through Anaconda)
+
+```bash
+conda create -n env python=3.11
+```
 
 - Download the repository or directly copy the raw code from [keyword_extraction.py](https://github.com/Stephan-Linzbach/Comparing-Keyword-Importance-Across-Texts/blob/main/keyword_extraction.py) and requirements.txt
 
